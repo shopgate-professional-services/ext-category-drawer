@@ -1,0 +1,58 @@
+{
+  "version": "1",
+  "pipeline": {
+    "id": "shopgate.category-drawer.getCategoryTree.v1",
+    "input": [
+    ],
+    "steps": [
+      {
+        "id": "@shopgate-project/category-drawer",
+        "path": "@shopgate-project/category-drawer/checkCache.js",
+        "type": "extension",
+        "input": [
+        ],
+        "output": [
+          {
+            "id": "1000",
+            "key": "categoryTree"
+          }
+        ]
+      },
+      {
+        "type": "conditional",
+        "input": [
+          {
+            "key": "categoryTree",
+            "id": "1000"
+          }
+        ],
+        "expression": {
+          "null": [
+            {
+              "name": "categoryTree"
+            }
+          ]
+        },
+        "then": {
+          "type": "pipeline",
+          "id": "shopgate.category-drawer.fetchCategoryTree.v1",
+          "input": [
+          ],
+          "output": [
+            {
+              "key": "categoryTree",
+              "id": "1000"
+            }
+          ]
+        }
+      }
+    ],
+    "output": [
+      {
+        "id": "1000",
+        "key": "categoryTree"
+      }
+    ],
+    "public": true
+  }
+}

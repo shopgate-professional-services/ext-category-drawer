@@ -1,0 +1,50 @@
+{
+  "version": "1.0.0",
+  "id": "@shopgate-project/category-drawer",
+  "components": [
+    {
+      "id": "TabBarBrowse",
+      "path": "frontend/portals/TabBar/TabBarBrowse/index.jsx",
+      "target": "tab-bar.browse",
+      "type": "portals"
+    },
+    {
+      "id": "subscriptions",
+      "path": "frontend/subscriptions/index.js",
+      "type": "subscribers"
+    },
+    {
+      "id": "categoryTree",
+      "path": "frontend/reducers/index.js",
+      "type": "reducers"
+    },
+    {
+      "id": "CategoryDrawerSearchBarBurgerIcon",
+      "path": "frontend/portals/SearchBarBurgerIcon/index.jsx",
+      "target": "persistent-search-bar.input.wrapper.before",
+      "type": "portals"
+    },
+    {
+      "id": "CategoryDrawerNavDrawer",
+      "path": "frontend/portals/NavDrawer/index.jsx",
+      "target": "app.globals",
+      "type": "portals"
+    }
+  ],
+  "configuration": {
+    "credentials": {
+      "type": "bigApiCredentials",
+      "destination": "backend"
+    },
+    "requestTimeout": {
+      "type": "static",
+      "destination": "backend",
+      "params": {
+        "value": {
+          "bigApi": 15000,
+          "token": 2000
+        }
+      }
+    }
+  }
+}

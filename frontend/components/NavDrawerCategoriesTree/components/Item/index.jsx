@@ -6,7 +6,7 @@ import { themeConfig } from '@shopgate/pwa-common/helpers/config';
 import { i18n } from '@shopgate/engage/core';
 import { useSideNavigation } from '../../hooks';
 
-const { variables } = themeConfig;
+const { variables, colors } = themeConfig;
 
 /**
  * @param {number} level The indentation level
@@ -35,7 +35,7 @@ export const styles = {
     borderTop: 'none',
   }).toString(),
   itemActive: css({
-    color: '#85754e',
+    color: colors.primary.toLowerCase(),
   }).toString(),
   link: css({
     flexGrow: 1,

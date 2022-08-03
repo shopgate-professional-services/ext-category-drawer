@@ -5,10 +5,13 @@ import PropTypes from 'prop-types';
 import { css } from 'glamor';
 import classNames from 'classnames';
 import { ChevronIcon } from '@shopgate/engage/components';
+import { themeConfig } from '@shopgate/pwa-common/helpers/config';
 import CategoriesItemChildren from '../CategoriesItemChildren';
 import Item from '../Item';
 import connect from './connector';
 import { useSideNavigation } from '../../hooks';
+
+const { colors } = themeConfig;
 
 const animationDuration = 500;
 
@@ -23,7 +26,7 @@ const styles = {
     outline: 0,
     padding: 10,
     fontSize: 28,
-    color: '#85754e',
+    color: colors.primary.toLowerCase(),
     position: 'relative',
   }),
   chevron: chevronStyles,

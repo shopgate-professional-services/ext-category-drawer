@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'phi.categoryTree'
+const STORAGE_KEY = 'category-drawer.categoryTree'
 const CACHE_TIME = 10 * 60 * 1000 // 10 min
 
 module.exports = {

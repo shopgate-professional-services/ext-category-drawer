@@ -6,7 +6,8 @@ import CategoriesItem from '../CategoriesItem';
  * The ItemChildren component
  * @returns {JSX}
  */
-const CategoriesItemChildren = ({ subcategories, level }) => (
+const CategoriesItemChildren = ({ subcategories, level }) => {
+  return(
   <ul>
     {
       subcategories.map(category => (
@@ -14,11 +15,13 @@ const CategoriesItemChildren = ({ subcategories, level }) => (
           key={category.id}
           level={level}
           categoryId={category.id}
+          content={category.content}
         />
       ))
     }
   </ul>
-);
+  )
+};
 
 CategoriesItemChildren.propTypes = {
   level: PropTypes.number.isRequired,

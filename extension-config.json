@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0-rc.1",
   "id": "@shopgate-project/category-drawer",
   "components": [
     {
@@ -32,6 +32,34 @@
     }
   ],
   "configuration": {
+    "showTabBarBrowse": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": false,
+      "params": {
+        "label": "true/false to show the Tab Bar Browse Icon",
+        "type": "bool"
+      }
+    },
+    "showSearchBarNavDrawer": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": true,
+      "params": {
+        "label": "true/false to show the Search Bar Browse Icon",
+        "type": "bool"
+      }
+    },
+    "categoryContentMap": {
+      "type": "admin",
+      "default": [],
+      "destination": "frontend",
+      "params": {
+        "label": "Mapping for tag and image srcs",
+        "description": "The various tags/properties and src associations for extension. The badge hierarchy for items with multiple trigger tags is determined by array.",
+        "type": "json"
+      }
+    },
     "credentials": {
       "type": "bigApiCredentials",
       "destination": "backend"

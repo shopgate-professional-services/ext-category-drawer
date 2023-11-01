@@ -3,7 +3,9 @@ import { BurgerIcon } from '@shopgate/pwa-ui-shared';
 import { NavDrawer } from '@shopgate/pwa-ui-material';
 import { css } from 'glamor';
 import { themeName } from '@shopgate/pwa-common/helpers/config';
+import getConfig from '../../helpers/getConfig';
 
+const { showSearchBarNavDrawer } = getConfig();
 const isIOS = themeName.includes('ios');
 
 const styles = {
@@ -20,7 +22,7 @@ const styles = {
  * @returns {JSX}
  */
 const SearchBarBurgerIcon = () => {
-  if (!isIOS) {
+  if (!isIOS || !showSearchBarNavDrawer) {
     return null;
   }
 

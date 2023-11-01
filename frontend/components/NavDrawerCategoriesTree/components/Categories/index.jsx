@@ -39,6 +39,7 @@ const Categories = ({
     <li className={styles.list}>
       <CategoriesItemChildren level={0} subcategories={subcategories} />
     </li>
+
   );
 };
 

@@ -6,6 +6,7 @@ import { css } from 'glamor';
 import classNames from 'classnames';
 import { ChevronIcon } from '@shopgate/engage/components';
 import { themeConfig } from '@shopgate/pwa-common/helpers/config';
+import { HtmlSanitizer } from '@shopgate/engage/components';
 import CategoriesItemChildren from '../CategoriesItemChildren';
 import Item from '../Item';
 import connect from './connector';
@@ -50,6 +51,34 @@ const styles = {
   }).toString(),
 };
 
+
+// Styling for Content
+
+css.global('.category_drawer__content',
+  { 
+    width: '100%',
+    padding: '0px 10px 25px 10px',
+  }
+);
+
+css.global('.category_drawer__content img',
+  { 
+    marginTop: '10px',
+  }
+);
+
+css.global('.category_drawer__content p',
+  { 
+    margin: '5px 0px 5px 0px',
+  }
+);
+
+css.global('.category_drawer__content a',
+  { 
+    textDecoration: 'underline',
+  }
+);
+
 /**
  * The CategoriesItem component
  * @returns {JSX}
@@ -59,6 +88,7 @@ const CategoriesItem = ({
   category,
   subcategories,
   level,
+  content,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -127,6 +157,9 @@ const CategoriesItem = ({
       { !maxNestingReached && hasSubcategories && subcategories && (
         <div className={classes}>
           <CategoriesItemChildren subcategories={subcategories} level={level + 1} />
+          <HtmlSanitizer className="category_drawer__content">
+            {content}
+          </HtmlSanitizer>
         </div>
       )}
     </Item>
@@ -136,6 +169,7 @@ const CategoriesItem = ({
 CategoriesItem.propTypes = {
   category: PropTypes.shape(),
   categoryId: PropTypes.string,
+  content: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   level: PropTypes.number,
   subcategories: PropTypes.arrayOf(PropTypes.shape()),
 };
@@ -144,6 +178,7 @@ CategoriesItem.defaultProps = {
   category: null,
   subcategories: null,
   categoryId: null,
+  content: null,
   level: 0,
 };
 

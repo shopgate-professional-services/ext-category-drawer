@@ -1,5 +1,5 @@
 import React from 'react';
-import { BurgerIcon } from '@shopgate/pwa-ui-shared';
+import BrowseIcon from '@shopgate/pwa-ui-shared/icons/BrowseIcon';
 import { NavDrawer } from '@shopgate/pwa-ui-material';
 import { useWidgetSettings } from '@shopgate/engage/core';
 import I18n from '@shopgate/pwa-common/components/I18n';
@@ -25,8 +25,8 @@ const styles = {
     color: themeColors.shade3,
     '> svg': {
       flexGrow: 1,
-      width: 'auto',
-      heigth: 'auto',
+      width:  31,
+      heigth: 22,
       marginRight: 'auto',
       marginLeft: 'auto',
     },
@@ -56,7 +56,7 @@ const tabBarBrowse = () => {
       data-test-id="Button" 
       role="tab"
     >
-      <BurgerIcon className={styles.burger} />
+      <BrowseIcon className={styles.burger} />
       <div className={styles.span}>
         {showLabels && <I18n.Text string="Stöbern" />}
       </div>

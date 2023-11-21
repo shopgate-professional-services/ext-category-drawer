@@ -3,21 +3,22 @@ import { getCategoryChildren } from '@shopgate/engage/category';
 import { getCategoryTree } from '../../selectors';
 import getConfig from '../../helpers/getConfig';
 
+// To work with @shopgate-project/page-switcher
+const REDUX_NAMESPACE_SELECTION = '@shopgate-project/page-switcher/SwitchSelection';
+
 export const hasCategoryContent = (category) => {
   const { categoryContentMap } = getConfig();
 
   let content = []
   
   categoryContentMap.forEach(map => {
-    if (category.name === map.categoryName) {
+    if (category.id === map.categoryId) {
       content.push(map.content)
     }
   })
 
   return content;
 }
-
-
 
 /**
  * Creates a getCategoriesById selector
@@ -57,3 +58,16 @@ export const makeGetSubcategoriesByCategoryId = () =>
       }
     }
   );
+
+  /**
+ * Returns the selection
+ * @param {Object} state .
+ * @return {Object}
+ */
+export const getPageSwitcherSelection = (state) => {
+  if (!state.extensions[REDUX_NAMESPACE_SELECTION]?.selection) {
+    return {};
+  }
+
+  return state.extensions[REDUX_NAMESPACE_SELECTION].selection;
+};

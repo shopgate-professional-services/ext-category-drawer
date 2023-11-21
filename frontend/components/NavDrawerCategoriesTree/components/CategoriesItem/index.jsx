@@ -86,11 +86,13 @@ css.global('.category_drawer__content a',
 const CategoriesItem = ({
   categoryId,
   category,
+  pageSwitcher,
   subcategories,
   level,
   content,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isPageSwitcherInitalState, setisPageSwitcherInitalState] = useState(true);
 
   const {
     maxCategoryNesting,
@@ -116,6 +118,12 @@ const CategoriesItem = ({
 
   const handleClick = useCallback(() => {
     setIsOpen(!isOpen);
+    // ###BOA### 
+    // Logic for page switcher (if used with @shopgate-project/page-switcher)
+    if (level === 0) {
+      setisPageSwitcherInitalState(false);
+    }
+    // // ###EOA### 
   }, [isOpen]);
 
   const handleOpenCategory = useCallback(() => {
@@ -123,6 +131,12 @@ const CategoriesItem = ({
   }, [categoryId, openCategory]);
 
   const buttonRight = useMemo(() => {
+    // ###BOA### 
+    // Logic for page switcher (if used with @shopgate-project/page-switcher)
+    if (pageSwitcher && isPageSwitcherInitalState && level === 0) {
+      setIsOpen(true);
+    }
+    // ###EOA###
     if (!maxNestingReached && hasSubcategories) {
       return (
         <button type="button" onClick={handleClick} className={styles.chevronButton}>

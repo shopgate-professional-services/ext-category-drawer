@@ -22,18 +22,37 @@ const styles = {
  */
 const Categories = ({
   subcategories,
+  pageSwitcherSelection
 }) => {
+  let pageSwitcherCategoryId = null;
+  if (pageSwitcherSelection) {
+    pageSwitcherCategoryId = pageSwitcherSelection.categoryId;
+  }
+
   if (!subcategories) {
     return (
       <li className={itemStyles.item}>
         <LoadingIndicator className={styles.loadingIndicator} />
       </li>
     );
-  }
+  }  
 
   if (!subcategories || (Array.isArray(subcategories) && subcategories.length === 0)) {
     return null;
   }
+
+  // ###BOA### 
+  // Logic for page switcher (if used with @shopgate-project/page-switcher)
+  if (pageSwitcherCategoryId)  {
+    const filteredSubcategories = subcategories.filter((cat) => cat.id === pageSwitcherCategoryId);
+    return (
+      <li className={styles.list}>
+        <CategoriesItemChildren level={0} subcategories={filteredSubcategories} pageSwitcher={true} />
+      </li>
+  
+    );
+  }
+  // ###EOA###
 
   return (
     <li className={styles.list}>

@@ -11,7 +11,7 @@ import getConfig from '../../../helpers/getConfig';
 const { showTabBarBrowse } = getConfig();
 const isIOS = themeName.includes('ios');
 const styles = {
-  container:css({
+  container: css({
     display: 'flex',
     position: 'relative',
     flexBasis: 0,
@@ -25,8 +25,8 @@ const styles = {
     color: themeColors.shade3,
     '> svg': {
       flexGrow: 1,
-      width:  31,
-      heigth: 22,
+      width: 31,
+      height: 22,
       marginRight: 'auto',
       marginLeft: 'auto',
     },
@@ -49,11 +49,10 @@ const tabBarBrowse = () => {
   const { showLabels = true } = useWidgetSettings('@shopgate/engage/components/TabBar');
 
   return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-    <Button 
+    <Button
       className={`theme__tab-bar__tab-bar-action ${styles.container}`}
-      onClick={NavDrawer.open} 
-      data-test-id="Button" 
+      onClick={NavDrawer.open}
+      data-test-id="Button"
       role="tab"
     >
       <BrowseIcon className={styles.burger} />
@@ -62,7 +61,6 @@ const tabBarBrowse = () => {
       </div>
     </Button>
   );
-  
 };
 
 export default tabBarBrowse;

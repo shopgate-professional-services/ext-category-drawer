@@ -6,19 +6,24 @@ import getConfig from '../../helpers/getConfig';
 // To work with @shopgate-project/page-switcher
 const REDUX_NAMESPACE_SELECTION = '@shopgate-project/page-switcher/SwitchSelection';
 
+/**
+ * Return content for a category
+ * @param {Object} category The application state.
+ * @returns {Function}
+ */
 export const hasCategoryContent = (category) => {
   const { categoryContentMap } = getConfig();
 
-  let content = []
-  
-  categoryContentMap.forEach(map => {
+  const content = [];
+
+  categoryContentMap.forEach((map) => {
     if (category.id === map.categoryId) {
-      content.push(map.content)
+      content.push(map.content);
     }
-  })
+  });
 
   return content;
-}
+};
 
 /**
  * Creates a getCategoriesById selector
@@ -39,35 +44,37 @@ export const makeGetSubcategoriesByCategoryId = () =>
     (childCategories, categoryTree, categoryId) => {
       // Check if we have to handle the root-category
       if (!categoryId && categoryTree) {
-        const enriched = categoryTree.map(category => {
-          const content = {content: hasCategoryContent(category)}
-          return {...category, ...content};
-        })
-        
-        return enriched;
+        return categoryTree.map(category => ({
+          ...category,
+          content: hasCategoryContent(category),
+        }));
       }
 
-      //has category content???
-      if (childCategories) {
-        const enriched = childCategories.map(category => {
-          const content = {content: hasCategoryContent(category)}
-          return {...category, ...content};
-        });
-
-        return enriched;
+      // Check if a category has a contentMapping
+      if (Array.isArray(childCategories)) {
+        return childCategories.map(category => ({
+          ...category,
+          content: hasCategoryContent(category),
+        }));
       }
+
+      return childCategories;
     }
   );
 
-  /**
- * Returns the selection
+/**
+ * Get the state of the @shopgate-project/page-switcher extension
+ * @param {Object} state Redux state
+ * @returns {Function}
+ */
+export const getPageSwitcherState = state => state?.extensions[REDUX_NAMESPACE_SELECTION];
+
+/**
+ * Returns page switcher selection
  * @param {Object} state .
  * @return {Object}
  */
-export const getPageSwitcherSelection = (state) => {
-  if (!state.extensions[REDUX_NAMESPACE_SELECTION]?.selection) {
-    return {};
-  }
-
-  return state.extensions[REDUX_NAMESPACE_SELECTION].selection;
-};
+export const getPageSwitcherSelection = createSelector(
+  getPageSwitcherState,
+  switcherState => switcherState?.selection || {}
+);

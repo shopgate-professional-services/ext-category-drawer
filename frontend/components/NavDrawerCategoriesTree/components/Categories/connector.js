@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import {
   makeGetSubcategoriesByCategoryId,
-  getPageSwitcherSelection
+  getPageSwitcherSelection,
 } from '../../selectors';
 
 /**
@@ -13,7 +13,7 @@ const makeMapStateToProps = () => {
 
   return (state, { categoryId }) => ({
     subcategories: getSubcategoriesByCategoryId(state, { categoryId }),
-    pageSwitcherSelection: getPageSwitcherSelection(state)
+    pageSwitcherSelection: getPageSwitcherSelection(state),
   });
 };
 

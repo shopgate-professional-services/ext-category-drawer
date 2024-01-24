@@ -6,8 +6,7 @@ import CategoriesItem from '../CategoriesItem';
  * The ItemChildren component
  * @returns {JSX}
  */
-const CategoriesItemChildren = ({ subcategories, level, pageSwitcher }) => {
-  return(
+const CategoriesItemChildren = ({ subcategories, level, pageSwitcher }) => (
   <ul>
     {
       subcategories.map(category => (
@@ -21,13 +20,16 @@ const CategoriesItemChildren = ({ subcategories, level, pageSwitcher }) => {
       ))
     }
   </ul>
-  )
-};
+);
 
 CategoriesItemChildren.propTypes = {
   level: PropTypes.number.isRequired,
-  pageSwitcher: PropTypes.bool,
   subcategories: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  pageSwitcher: PropTypes.bool,
+};
+
+CategoriesItemChildren.defaultProps = {
+  pageSwitcher: null,
 };
 
 export default CategoriesItemChildren;

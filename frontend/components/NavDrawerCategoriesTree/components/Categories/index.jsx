@@ -22,7 +22,7 @@ const styles = {
  */
 const Categories = ({
   subcategories,
-  pageSwitcherSelection
+  pageSwitcherSelection,
 }) => {
   let pageSwitcherCategoryId = null;
   if (pageSwitcherSelection) {
@@ -35,21 +35,20 @@ const Categories = ({
         <LoadingIndicator className={styles.loadingIndicator} />
       </li>
     );
-  }  
+  }
 
   if (!subcategories || (Array.isArray(subcategories) && subcategories.length === 0)) {
     return null;
   }
 
-  // ###BOA### 
+  // ###BOA###
   // Logic for page switcher (if used with @shopgate-project/page-switcher)
-  if (pageSwitcherCategoryId)  {
-    const filteredSubcategories = subcategories.filter((cat) => cat.id === pageSwitcherCategoryId);
+  if (pageSwitcherCategoryId) {
+    const filteredSubcategories = subcategories.filter(cat => cat.id === pageSwitcherCategoryId);
     return (
       <li className={styles.list}>
-        <CategoriesItemChildren level={0} subcategories={filteredSubcategories} pageSwitcher={true} />
+        <CategoriesItemChildren level={0} subcategories={filteredSubcategories} pageSwitcher />
       </li>
-  
     );
   }
   // ###EOA###
@@ -63,10 +62,12 @@ const Categories = ({
 };
 
 Categories.propTypes = {
+  pageSwitcherSelection: PropTypes.shape(),
   subcategories: PropTypes.arrayOf(PropTypes.shape()),
 };
 
 Categories.defaultProps = {
+  pageSwitcherSelection: null,
   subcategories: null,
 };
 

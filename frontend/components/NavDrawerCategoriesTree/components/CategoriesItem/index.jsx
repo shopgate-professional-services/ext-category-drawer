@@ -98,7 +98,7 @@ const CategoriesItem = ({
     if (pageSwitcher === true) {
       setIsOpen(true);
     }
-  }, [pageSwitcher]);
+  }, [pageSwitcher, activeCategoryPath]);
 
   const hasSubcategories = useMemo(() => category && category.childrenCount !== 0, [category]);
   const maxNestingReached = useMemo(() => level + 1 === maxCategoryNesting, [

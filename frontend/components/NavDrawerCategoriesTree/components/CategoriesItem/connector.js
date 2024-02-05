@@ -1,8 +1,6 @@
 import { connect } from 'react-redux';
 import { getCategory } from '@shopgate/pwa-common-commerce/category/selectors';
-import {
-  makeGetSubcategoriesByCategoryId,
-} from '../../selectors';
+import { makeGetSubcategoriesByCategoryId } from '../../selectors';
 
 /**
  * Creates the mapStateToProps connector function.

@@ -1,6 +1,5 @@
 {
   "name": "@shopgate-project/category-drawer",
-  "version": "1.0.0",
   "description": "Adds BurgerIcon to open a Category Drawer.",
   "license": "Apache-2.0",
   "devDependencies": {

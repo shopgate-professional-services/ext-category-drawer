@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "id": "@shopgate-project/category-drawer",
   "components": [
     {
@@ -32,6 +32,43 @@
     }
   ],
   "configuration": {
+    "showTabBarBrowse": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": true,
+      "params": {
+        "label": "true/false to show the Tab Bar Browse Icon",
+        "type": "bool"
+      }
+    },
+    "showSearchBarNavDrawer": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": true,
+      "params": {
+        "label": "true/false to show the Search Bar Browse Icon",
+        "type": "bool"
+      }
+    },
+    "categoryContentMap": {
+      "type": "admin",
+      "default": [
+        {
+          "categoryId": "346",
+          "content": "<img src=\"https://cdn.mey.com/media/wysiwyg/megamenue-teaser_damen_new_left_800x600px.jpg\" /><p><strong>Die neusten Dessous-Trends für Sie.</strong></p><a href=\"/category/383235\"><span>Jetzt Shoppen</span></a><img src=\"https://cdn.mey.com/media/wysiwyg/megamenue-teaser_damen_new_right_800x600px.jpg\" /><p><strong>Unsere Nachtwäsche-Looks der neusten Kollektion.</strong></p><a href=\"\"><span>Jetzt entdecken</span></a>"
+        },
+        {
+          "categoryId": "Dessous",
+          "content": "<img src=\"https://cdn.mey.com/media/wysiwyg/megamenue-teaser_damen_dessous_left_800x600px.jpg\" /><img src=\"https://cdn.mey.com/media/wysiwyg/megamenue-teaser_damen_dessous_left_800x600px.jpg\" />"
+        }
+      ],
+      "destination": "frontend",
+      "params": {
+        "label": "Mapping for tag and image srcs",
+        "description": "The various tags/properties and src associations for extension. The badge hierarchy for items with multiple trigger tags is determined by array.",
+        "type": "json"
+      }
+    },
     "credentials": {
       "type": "bigApiCredentials",
       "destination": "backend"

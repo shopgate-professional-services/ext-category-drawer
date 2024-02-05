@@ -1,6 +1,4 @@
-import React, {
-  useState, useCallback, useMemo, useEffect,
-} from 'react';
+import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { ArrowDropIcon } from '@shopgate/engage/components';
 import Item, { styles as itemStyles } from '../Item';

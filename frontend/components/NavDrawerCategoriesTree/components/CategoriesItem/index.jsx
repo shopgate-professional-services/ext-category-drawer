@@ -1,11 +1,9 @@
-import React, {
-  useState, useCallback, useMemo, useEffect,
-} from 'react';
+import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'glamor';
 import classNames from 'classnames';
-import { ChevronIcon } from '@shopgate/engage/components';
 import { themeConfig } from '@shopgate/pwa-common/helpers/config';
+import { HtmlSanitizer, ChevronIcon } from '@shopgate/engage/components';
 import CategoriesItemChildren from '../CategoriesItemChildren';
 import Item from '../Item';
 import connect from './connector';
@@ -37,7 +35,7 @@ const styles = {
     transform: 'rotateZ(-270deg)',
   }).toString(),
   open: css({
-    //  borderRight: '2px solid var(--color-primary)',
+    borderRight: '2px solid var(--color-primary)',
   }).toString(),
   transitionBlock: css({
     transition: `max-height ${animationDuration}ms cubic-bezier(0, 1, 0, 1)`,
@@ -48,6 +46,22 @@ const styles = {
     transition: `max-height ${animationDuration * 2}ms ease-in-out !important`,
     maxHeight: '1000vh !important',
   }).toString(),
+  drawer: css({
+    '&:not(:empty)': {
+      // Padding is only applied when HTMLSanitizer renders content
+      width: '100%',
+      padding: '0px 10px 25px 10px',
+    },
+    ' img': {
+      marginTop: '10px',
+    },
+    ' p': {
+      margin: '5px 0px 5px 0px',
+    },
+    ' a': {
+      textDecoration: 'underline',
+    },
+  }).toString(),
 };
 
 /**
@@ -57,8 +71,10 @@ const styles = {
 const CategoriesItem = ({
   categoryId,
   category,
+  pageSwitcher,
   subcategories,
   level,
+  content,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -77,6 +93,12 @@ const CategoriesItem = ({
   useEffect(() => {
     setIsOpen(isPartOfCategoryPath);
   }, [isPartOfCategoryPath]);
+
+  useEffect(() => {
+    if (pageSwitcher === true) {
+      setIsOpen(true);
+    }
+  }, [pageSwitcher, activeCategoryPath]);
 
   const hasSubcategories = useMemo(() => category && category.childrenCount !== 0, [category]);
   const maxNestingReached = useMemo(() => level + 1 === maxCategoryNesting, [
@@ -127,6 +149,9 @@ const CategoriesItem = ({
       { !maxNestingReached && hasSubcategories && subcategories && (
         <div className={classes}>
           <CategoriesItemChildren subcategories={subcategories} level={level + 1} />
+          <HtmlSanitizer className={styles.drawer}>
+            {content}
+          </HtmlSanitizer>
         </div>
       )}
     </Item>
@@ -136,7 +161,9 @@ const CategoriesItem = ({
 CategoriesItem.propTypes = {
   category: PropTypes.shape(),
   categoryId: PropTypes.string,
+  content: PropTypes.arrayOf(PropTypes.string),
   level: PropTypes.number,
+  pageSwitcher: PropTypes.bool,
   subcategories: PropTypes.arrayOf(PropTypes.shape()),
 };
 
@@ -144,7 +171,9 @@ CategoriesItem.defaultProps = {
   category: null,
   subcategories: null,
   categoryId: null,
+  content: null,
   level: 0,
+  pageSwitcher: false,
 };
 
 export default connect(CategoriesItem);

@@ -52,16 +52,7 @@
     },
     "categoryContentMap": {
       "type": "admin",
-      "default": [
-        {
-          "categoryId": "346",
-          "content": "<img src=\"https://cdn.mey.com/media/wysiwyg/megamenue-teaser_damen_new_left_800x600px.jpg\" /><p><strong>Die neusten Dessous-Trends für Sie.</strong></p><a href=\"/category/383235\"><span>Jetzt Shoppen</span></a><img src=\"https://cdn.mey.com/media/wysiwyg/megamenue-teaser_damen_new_right_800x600px.jpg\" /><p><strong>Unsere Nachtwäsche-Looks der neusten Kollektion.</strong></p><a href=\"\"><span>Jetzt entdecken</span></a>"
-        },
-        {
-          "categoryId": "Dessous",
-          "content": "<img src=\"https://cdn.mey.com/media/wysiwyg/megamenue-teaser_damen_dessous_left_800x600px.jpg\" /><img src=\"https://cdn.mey.com/media/wysiwyg/megamenue-teaser_damen_dessous_left_800x600px.jpg\" />"
-        }
-      ],
+      "default": [],
       "destination": "frontend",
       "params": {
         "label": "Mapping for tag and image srcs",

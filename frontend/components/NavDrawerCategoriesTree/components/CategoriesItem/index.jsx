@@ -161,7 +161,7 @@ const CategoriesItem = ({
               <I18n.Text string="category.showAllProducts.label" />
             </Link>
           ) :
-          null
+            null
           }
           <CategoriesItemChildren subcategories={subcategories} level={level + 1} />
           <HtmlSanitizer className={styles.drawer}>

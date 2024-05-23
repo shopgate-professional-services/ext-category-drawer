@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { css } from 'glamor';
 import classNames from 'classnames';
 import { themeConfig } from '@shopgate/pwa-common/helpers/config';
-import { HtmlSanitizer, ChevronIcon, Link } from '@shopgate/engage/components';
+import { HtmlSanitizer, ChevronIcon, Link, I18n } from '@shopgate/engage/components';
 import { bin2hex } from '@shopgate/engage/core';
 import CategoriesItemChildren from '../CategoriesItemChildren';
 import Item from '../Item';
@@ -158,7 +158,7 @@ const CategoriesItem = ({
         <div className={classes}>
           { showAllProducts ? (
             <Link href={`/category/${bin2hex(categoryId)}/all`} className={styles.link}>
-              Alle Produkte anzeigen
+              <I18n.Text string="category.showAllProducts.label" />
             </Link>
           ) :
           null

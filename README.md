@@ -44,6 +44,15 @@ Default Values:
 }
 ```
 
+#### showAllProducts:
+This configuration is used to determine if the show all products function from the PWA will also be activated for the category drawer.
+Default Values:
+```json
+{
+  "showAllProducts": true
+}
+```
+
 ## About Shopgate
 
 Shopgate is the leading mobile commerce platform.

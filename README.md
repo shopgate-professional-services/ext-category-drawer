@@ -49,7 +49,7 @@ This configuration is used to determine if the show all products function from t
 Default Values:
 ```json
 {
-  "showAllProducts": true
+  "showAllProducts": false
 }
 ```
 

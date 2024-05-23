@@ -3,11 +3,15 @@ import PropTypes from 'prop-types';
 import { css } from 'glamor';
 import classNames from 'classnames';
 import { themeConfig } from '@shopgate/pwa-common/helpers/config';
-import { HtmlSanitizer, ChevronIcon } from '@shopgate/engage/components';
+import { HtmlSanitizer, ChevronIcon, Link } from '@shopgate/engage/components';
+import { bin2hex } from '@shopgate/engage/core';
 import CategoriesItemChildren from '../CategoriesItemChildren';
 import Item from '../Item';
 import connect from './connector';
 import { useSideNavigation } from '../../hooks';
+import getConfig from '../../../../helpers/getConfig';
+
+const { showAllProducts } = getConfig();
 
 const { colors } = themeConfig;
 
@@ -61,6 +65,10 @@ const styles = {
     ' a': {
       textDecoration: 'underline',
     },
+  }).toString(),
+  link: css({
+    padding: '12px 16px',
+    fontWeight: '400',
   }).toString(),
 };
 
@@ -148,6 +156,13 @@ const CategoriesItem = ({
     >
       { !maxNestingReached && hasSubcategories && subcategories && (
         <div className={classes}>
+          { showAllProducts ? (
+            <Link href={`/category/${bin2hex(categoryId)}/all`} className={styles.link}>
+              Alle Produkte anzeigen
+            </Link>
+          ) :
+          null
+          }
           <CategoriesItemChildren subcategories={subcategories} level={level + 1} />
           <HtmlSanitizer className={styles.drawer}>
             {content}

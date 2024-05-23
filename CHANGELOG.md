@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.2.0] - 2024-04-11
+### Added
+- Adds compatibility with "show all products" feature.
+
 ## [1.1.0] - 2023-11-21
 ### Added
 - Adds config to add BurgerIcon to the TabBar.

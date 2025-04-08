@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.3.0] - 2025-04-07
+### Added
+- Improved accessibility for screen readers
+
 ## [1.2.0] - 2024-04-11
 ### Added
 - Adds compatibility with "show all products" feature.

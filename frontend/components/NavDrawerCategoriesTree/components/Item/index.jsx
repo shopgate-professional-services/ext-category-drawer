@@ -1,4 +1,6 @@
-import React, { useMemo, memo, useCallback } from 'react';
+import React, {
+  useMemo, memo, useCallback, useState, useEffect,
+} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { css } from 'glamor';
@@ -80,12 +82,23 @@ const Item = ({
     href,
   ]);
 
+  const [isAriaHidden, setIsAriaHidden] = useState(level !== 0);
+
   const handleOpenLink = useCallback(() => {
     openLink(href);
   }, [href, openLink]);
 
+  useEffect(() => {
+    if (isOpen) {
+      setIsAriaHidden(false);
+    }
+  }, [isOpen, level]);
+
   return (
-    <li className={classNames(styles.list, className, getIndentation(level))}>
+    <li
+      className={classNames(styles.list, className, getIndentation(level))}
+      aria-hidden={isAriaHidden}
+    >
       <div className={classNames(styles.item, {
         [styles.itemActive]: isActive || isOpen,
         [styles.itemNoBorder]: level >= maxLevelWithBorder || noBorder,
@@ -93,11 +106,13 @@ const Item = ({
       >
         <button
           type="button"
+          role="option"
           className={classNames(styles.link, {
             [styles.linkActive]: isActive || isOpen,
             [styles.withButtonRight]: !!buttonRight,
           })}
           onClick={href ? handleOpenLink : onClick}
+          aria-selected={isActive}
         >
           {i18n.text(label)}
         </button>

@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import noop from 'lodash/noop';
 import { NavDrawer } from '@shopgate/pwa-ui-material';
-import NavDrawerCategoriesTree from '../../components/NavDrawerCategoriesTree';
 import { themeName } from '@shopgate/pwa-common/helpers/config';
+import { FocusTrap } from '@shopgate/engage/a11y/components';
+import NavDrawerCategoriesTree from '../../components/NavDrawerCategoriesTree';
 
 const isIOS = themeName.includes('ios');
 
@@ -17,7 +18,9 @@ const NavDrawerContainer = ({ onOpen, onClose }) => {
 
   return (
     <NavDrawer onOpen={onOpen} onClose={onClose}>
-      <NavDrawerCategoriesTree />
+      <FocusTrap>
+        <NavDrawerCategoriesTree />
+      </FocusTrap>
     </NavDrawer>
   );
 };

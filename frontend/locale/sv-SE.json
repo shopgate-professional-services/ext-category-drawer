@@ -1,0 +1,7 @@
+{
+  "open_categories": "Öppna kategorimenyn",
+  "open_category": "Öppna kategori {category}",
+  "open_subCategory": "Öppna underkategori {category}",
+  "close_category": "Stäng kategori {category}",
+  "close_subCategory": "Stäng underkategori {category}"
+}

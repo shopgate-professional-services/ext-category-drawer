@@ -133,7 +133,9 @@ const CategoriesItem = ({
           type="button"
           onClick={handleClick}
           className={styles.chevronButton}
-          aria-label={isOpen ? i18n.text('common.close') : i18n.text('navigation.open_menu')}
+          aria-label={isOpen
+            ? i18n.text(level === 0 ? 'close_category' : 'close_subCategory', { category: category.name })
+            : i18n.text(level === 0 ? 'open_category' : 'open_subCategory', { category: category.name })}
         >
           <ChevronIcon
             className={isOpen && subcategories ? styles.chevronUp : styles.chevronDown}
@@ -143,7 +145,8 @@ const CategoriesItem = ({
     }
 
     return null;
-  }, [handleClick, hasSubcategories, isOpen, maxNestingReached, subcategories]);
+  }, [category.name, handleClick, hasSubcategories,
+    isOpen, level, maxNestingReached, subcategories]);
 
   if (!category) {
     return null;

@@ -1,0 +1,7 @@
+{
+  "open_categories": "Deschide meniul de categorii",
+  "open_category": "Deschide categoria {category}",
+  "open_subCategory": "Deschide subcategoria {category}",
+  "close_category": "Închide categoria {category}",
+  "close_subCategory": "Închide subcategoria {category}"
+}

@@ -1,0 +1,7 @@
+{
+  "open_categories": "Ouvrir le menu des catégories",
+  "open_category": "Ouvrir la catégorie {category}",
+  "open_subCategory": "Ouvrir la sous-catégorie {category}",
+  "close_category": "Fermer la catégorie {category}",
+  "close_subCategory": "Fermer la sous-catégorie {category}"
+}

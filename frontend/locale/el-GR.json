@@ -1,0 +1,7 @@
+{
+  "open_categories": "Άνοιγμα μενού κατηγοριών",
+  "open_category": "Άνοιγμα κατηγορίας {category}",
+  "open_subCategory": "Άνοιγμα υποκατηγορίας {category}",
+  "close_category": "Κλείσιμο κατηγορίας {category}",
+  "close_subCategory": "Κλείσιμο υποκατηγορίας {category}"
+}

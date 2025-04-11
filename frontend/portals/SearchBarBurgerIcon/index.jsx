@@ -40,7 +40,7 @@ const SearchBarBurgerIcon = () => {
       onClick={NavDrawer.open}
       role="button"
       tabIndex={0}
-      aria-label={i18n.text('navigation.open_menu')}
+      aria-label={i18n.text('open_categories')}
     >
       <BurgerIcon />
     </div>

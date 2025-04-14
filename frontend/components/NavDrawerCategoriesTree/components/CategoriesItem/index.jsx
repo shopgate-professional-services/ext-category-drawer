@@ -9,6 +9,7 @@ import {
   HtmlSanitizer, ChevronIcon, Link, I18n,
 } from '@shopgate/engage/components';
 import { bin2hex, i18n } from '@shopgate/engage/core/helpers';
+import { useTrackModalState } from '@shopgate/engage/a11y/hooks';
 import CategoriesItemChildren from '../CategoriesItemChildren';
 import Item from '../Item';
 import connect from './connector';
@@ -89,6 +90,7 @@ const CategoriesItem = ({
   content,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  useTrackModalState(isOpen);
 
   const {
     maxCategoryNesting,

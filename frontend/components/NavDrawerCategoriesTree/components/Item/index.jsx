@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { css } from 'glamor';
 import { themeConfig } from '@shopgate/pwa-common/helpers/config';
-import { i18n } from '@shopgate/engage/core';
+import { i18n } from '@shopgate/engage/core/helpers';
 import { useSideNavigation } from '../../hooks';
 
 const { variables, colors } = themeConfig;

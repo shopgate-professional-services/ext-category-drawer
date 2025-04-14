@@ -8,7 +8,7 @@ import { themeConfig } from '@shopgate/pwa-common/helpers/config';
 import {
   HtmlSanitizer, ChevronIcon, Link, I18n,
 } from '@shopgate/engage/components';
-import { bin2hex, i18n } from '@shopgate/engage/core';
+import { bin2hex, i18n } from '@shopgate/engage/core/helpers';
 import CategoriesItemChildren from '../CategoriesItemChildren';
 import Item from '../Item';
 import connect from './connector';

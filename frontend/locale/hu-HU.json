@@ -1,0 +1,7 @@
+{
+  "open_categories": "Kategóriamenü megnyitása",
+  "open_category": "Kategória {category} megnyitása",
+  "open_subCategory": "Alkategória {category} megnyitása",
+  "close_category": "Kategória {category} bezárása",
+  "close_subCategory": "Alkategória {category} bezárása"
+}

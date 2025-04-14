@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import noop from 'lodash/noop';
 import { NavDrawer } from '@shopgate/pwa-ui-material';
-import NavDrawerCategoriesTree from '../../components/NavDrawerCategoriesTree';
 import { themeName } from '@shopgate/pwa-common/helpers/config';
+import NavDrawerCategoriesTree from '../../components/NavDrawerCategoriesTree';
 
 const isIOS = themeName.includes('ios');
 

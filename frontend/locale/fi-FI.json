@@ -1,0 +1,7 @@
+{
+  "open_categories": "Avaa kategoriavalikko",
+  "open_category": "Avaa kategoria {category}",
+  "open_subCategory": "Avaa alakategoria {category}",
+  "close_category": "Sulje kategoria {category}",
+  "close_subCategory": "Sulje alakategoria {category}"
+}

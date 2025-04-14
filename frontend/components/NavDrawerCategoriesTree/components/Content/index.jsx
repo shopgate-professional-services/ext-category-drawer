@@ -22,7 +22,6 @@ const Content = () => (
         <Categories />
       </ul>
     </nav>
-
   </div>
 );
 

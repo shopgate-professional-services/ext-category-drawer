@@ -1,0 +1,7 @@
+{
+  "open_categories": "Otevřít nabídku kategorií",
+  "open_category": "Otevřít kategorii {category}",
+  "open_subCategory": "Otevřít podkategorii {category}",
+  "close_category": "Zavřít kategorii {category}",
+  "close_subCategory": "Zavřít podkategorii {category}"
+}

@@ -1,9 +1,11 @@
-import React, { useMemo, memo, useCallback } from 'react';
+import React, {
+  useMemo, memo, useCallback,
+} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { css } from 'glamor';
 import { themeConfig } from '@shopgate/pwa-common/helpers/config';
-import { i18n } from '@shopgate/engage/core';
+import { i18n } from '@shopgate/engage/core/helpers';
 import { useSideNavigation } from '../../hooks';
 
 const { variables, colors } = themeConfig;
@@ -85,7 +87,9 @@ const Item = ({
   }, [href, openLink]);
 
   return (
-    <li className={classNames(styles.list, className, getIndentation(level))}>
+    <li
+      className={classNames(styles.list, className, getIndentation(level))}
+    >
       <div className={classNames(styles.item, {
         [styles.itemActive]: isActive || isOpen,
         [styles.itemNoBorder]: level >= maxLevelWithBorder || noBorder,
@@ -93,18 +97,22 @@ const Item = ({
       >
         <button
           type="button"
+          role="option"
           className={classNames(styles.link, {
             [styles.linkActive]: isActive || isOpen,
             [styles.withButtonRight]: !!buttonRight,
           })}
           onClick={href ? handleOpenLink : onClick}
+          aria-selected={isActive}
         >
           {i18n.text(label)}
         </button>
 
         { buttonRight}
       </div>
-      {children}
+      <div aria-hidden={!isOpen}>
+        {children}
+      </div>
     </li>
   );
 };

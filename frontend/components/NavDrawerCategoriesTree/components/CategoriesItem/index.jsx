@@ -1,10 +1,14 @@
-import React, { useState, useCallback, useMemo, useEffect } from 'react';
+import React, {
+  useState, useCallback, useMemo, useEffect,
+} from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'glamor';
 import classNames from 'classnames';
 import { themeConfig } from '@shopgate/pwa-common/helpers/config';
-import { HtmlSanitizer, ChevronIcon, Link, I18n } from '@shopgate/engage/components';
-import { bin2hex } from '@shopgate/engage/core';
+import {
+  HtmlSanitizer, ChevronIcon, Link, I18n,
+} from '@shopgate/engage/components';
+import { bin2hex, i18n } from '@shopgate/engage/core/helpers';
 import CategoriesItemChildren from '../CategoriesItemChildren';
 import Item from '../Item';
 import connect from './connector';
@@ -125,7 +129,14 @@ const CategoriesItem = ({
   const buttonRight = useMemo(() => {
     if (!maxNestingReached && hasSubcategories) {
       return (
-        <button type="button" onClick={handleClick} className={styles.chevronButton}>
+        <button
+          type="button"
+          onClick={handleClick}
+          className={styles.chevronButton}
+          aria-label={isOpen
+            ? i18n.text(level === 0 ? 'close_category' : 'close_subCategory', { category: category?.name })
+            : i18n.text(level === 0 ? 'open_category' : 'open_subCategory', { category: category?.name })}
+        >
           <ChevronIcon
             className={isOpen && subcategories ? styles.chevronUp : styles.chevronDown}
           />
@@ -134,7 +145,8 @@ const CategoriesItem = ({
     }
 
     return null;
-  }, [handleClick, hasSubcategories, isOpen, maxNestingReached, subcategories]);
+  }, [category, handleClick, hasSubcategories,
+    isOpen, level, maxNestingReached, subcategories]);
 
   if (!category) {
     return null;

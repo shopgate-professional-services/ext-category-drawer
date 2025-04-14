@@ -1,9 +1,8 @@
 # Changelog
 
-## [2.0.0] - 2025-04-14
-### Changed
-- BREAKING CHANGE:
-- used a hook to handle screen reader focus which needs PWA version 7.25.0 or later
+## [1.4.0] - 2025-04-10
+### Fixed
+- Fixed accessibility for screen readers
 
 ## [1.3.0] - 2025-04-07
 ### Added

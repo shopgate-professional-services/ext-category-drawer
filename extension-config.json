@@ -31,6 +31,12 @@
       "type": "portals"
     },
     {
+      "id": "CategoryDrawerBurgerIcon",
+      "path": "frontend/components/AppBarBurgerIcon/index.jsx",
+      "target": "app-bar.center.before",
+      "type": "portals"
+    },
+    {
       "id": "locale/de-DE",
       "path": "frontend/locale/de-DE.json",
       "type": "translations"
@@ -117,6 +123,15 @@
       "default": true,
       "params": {
         "label": "true/false to show the Search Bar Browse Icon",
+        "type": "bool"
+      }
+    },
+    "showAppBarNavDrawer": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": false,
+      "params": {
+        "label": "true/false to show the Search Bar Browse Icon inside the app header (only on homepage)",
         "type": "bool"
       }
     },

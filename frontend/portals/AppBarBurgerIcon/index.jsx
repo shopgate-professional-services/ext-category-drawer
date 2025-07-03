@@ -6,12 +6,13 @@ import { i18n, getCurrentRoute } from '@shopgate/engage/core';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import getConfig from '../../helpers/getConfig';
+import { getPageSwitcherSelection } from '../../components/NavDrawerCategoriesTree/selectors';
 
 const styles = {
   container: css({
     color: '#929292',
     fontSize: 30,
-    marginLeft: 10,
+    margin: '0 10px',
     flexShrink: 0,
     display: 'flex',
     alignItems: 'center',
@@ -25,6 +26,7 @@ const styles = {
  */
 const mapStateToProps = state => ({
   route: getCurrentRoute(state),
+  pageSwitcherSelection: getPageSwitcherSelection(state),
 });
 
 const { showAppBarNavDrawer } = getConfig();
@@ -32,16 +34,23 @@ const { showAppBarNavDrawer } = getConfig();
 /**
  * AppBarBurgerIcon
  * @param {Object} route the current route
- * @returns {JSX}
+ * @param {Object} [pageSwitcherSelection] optional page information
+ * if used in combination with page switcher extension
+ * @returns {JSX.Element}
  */
-const AppBarBurgerIcon = ({ route }) => {
+const AppBarBurgerIcon = ({ route, pageSwitcherSelection }) => {
   const handleKeyDown = useCallback((event) => {
     if (event.key === 'Enter') {
       NavDrawer.open();
     }
   }, []);
 
-  if (!showAppBarNavDrawer || route.pathname !== '/') {
+  if (!showAppBarNavDrawer || ((Object.keys(pageSwitcherSelection).length === 0) && route?.pathname !== '/')) {
+    return null;
+  }
+
+  if (Object.keys(pageSwitcherSelection).length > 0
+    && route?.pathname !== pageSwitcherSelection?.path) {
     return null;
   }
 
@@ -61,6 +70,11 @@ const AppBarBurgerIcon = ({ route }) => {
 
 AppBarBurgerIcon.propTypes = {
   route: PropTypes.shape().isRequired,
+  pageSwitcherSelection: PropTypes.shape(),
+};
+
+AppBarBurgerIcon.defaultProps = {
+  pageSwitcherSelection: null,
 };
 
 export default connect(mapStateToProps)(AppBarBurgerIcon);

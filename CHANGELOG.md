@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.5.0] - 2025-07-01
+## [1.5.0] - 2025-07-03
 ### Added
 - Supports position of burger icon in app bar (only on home page)
 

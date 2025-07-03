@@ -4,7 +4,6 @@ Adds a Burger Icon on the top left to open a Category Drawer. The Category Drawe
 
 ## Important Information
 
-- This extension will only work in combination with the [@shopgate-project/persistent-search-bar](https://github.com/shopgate-professional-services/ext-persistent-search-bar) extension as it uses a portal position provided by this extension.
 - The Burger Icon will only be shown in the iOS Theme.
 
 

@@ -32,7 +32,7 @@
     },
     {
       "id": "CategoryDrawerBurgerIcon",
-      "path": "frontend/components/AppBarBurgerIcon/index.jsx",
+      "path": "frontend/portals/AppBarBurgerIcon/index.jsx",
       "target": "app-bar.center.before",
       "type": "portals"
     },
@@ -113,8 +113,9 @@
       "destination": "frontend",
       "default": true,
       "params": {
-        "label": "true/false to show the Tab Bar Browse Icon",
-        "type": "bool"
+        "label": "show browse icon in tab bar",
+        "description": "This boolean indicates whether to show the browse icon in the tab bar",
+        "type": "json"
       }
     },
     "showSearchBarNavDrawer": {
@@ -122,8 +123,9 @@
       "destination": "frontend",
       "default": true,
       "params": {
-        "label": "true/false to show the Search Bar Browse Icon",
-        "type": "bool"
+        "label": "show nav drawer icon in search bar",
+        "description": "This boolean indicates whether to show the nav drawer icon in the search bar",
+        "type": "json"
       }
     },
     "showAppBarNavDrawer": {
@@ -131,8 +133,9 @@
       "destination": "frontend",
       "default": false,
       "params": {
-        "label": "true/false to show the Search Bar Browse Icon inside the app header (only on homepage)",
-        "type": "bool"
+        "label": "show nav drawer icon in app header",
+        "description": "This boolean indicates whether to show the nav drawer icon in the app header (only on homepage)",
+        "type": "json"
       }
     },
     "categoryContentMap": {
@@ -151,7 +154,7 @@
       "default": false,
       "params": {
         "label": "true/false to show all products",
-        "type": "bool"
+        "type": "json"
       }
     },
     "credentials": {

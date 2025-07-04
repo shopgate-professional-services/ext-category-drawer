@@ -113,9 +113,9 @@
       "destination": "frontend",
       "default": true,
       "params": {
-        "label": "show browse icon in tab bar",
+        "label": "Show browse icon in tab bar",
         "description": "This boolean indicates whether to show the browse icon in the tab bar",
-        "type": "json"
+        "type": "checkbox"
       }
     },
     "showSearchBarNavDrawer": {
@@ -123,9 +123,9 @@
       "destination": "frontend",
       "default": true,
       "params": {
-        "label": "show nav drawer icon in search bar",
+        "label": "Show nav drawer icon in search bar",
         "description": "This boolean indicates whether to show the nav drawer icon in the search bar",
-        "type": "json"
+        "type": "checkbox"
       }
     },
     "showAppBarNavDrawer": {
@@ -133,9 +133,9 @@
       "destination": "frontend",
       "default": false,
       "params": {
-        "label": "show nav drawer icon in app header",
+        "label": "Show nav drawer icon in app header",
         "description": "This boolean indicates whether to show the nav drawer icon in the app header (only on homepage)",
-        "type": "json"
+        "type": "checkbox"
       }
     },
     "categoryContentMap": {
@@ -154,7 +154,7 @@
       "default": false,
       "params": {
         "label": "true/false to show all products",
-        "type": "json"
+        "type": "checkbox"
       }
     },
     "credentials": {

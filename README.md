@@ -4,7 +4,8 @@ Adds a Burger Icon on the top left to open a Category Drawer. The Category Drawe
 
 ## Important Information
 
-- The Burger Icon will only be shown in the iOS Theme.
+- This extension only works with the iOS Theme.
+- The `showSearchBarNavDrawer` needs the [@shopgate-project/persistent-search-bar](https://github.com/shopgate-professional-services/ext-persistent-search-bar) extension to be deployed.
 
 
 #### categoryContentMap:
@@ -35,7 +36,7 @@ Default Values:
 ```
 
 #### showAppBarNavDrawer:
-This configuration is used to determine if the NavDrawer Icon will be shown in the app header (only on homepage).
+This configuration is used to determine if the NavDrawer Icon will be shown in the app header (only on homepage / startpage configured in the [@shopgate-project/page-switcher](https://github.com/shopgate-professional-services/ext-page-switcher)).
 Default Values:
 ```json
 {

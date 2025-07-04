@@ -1,8 +1,8 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { BurgerIcon } from '@shopgate/pwa-ui-shared';
 import { NavDrawer } from '@shopgate/pwa-ui-material';
 import { css } from 'glamor';
-import { i18n, getCurrentRoute } from '@shopgate/engage/core';
+import { i18n, useRoute } from '@shopgate/engage/core';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import getConfig from '../../helpers/getConfig';
@@ -16,6 +16,9 @@ const styles = {
     flexShrink: 0,
     display: 'flex',
     alignItems: 'center',
+    position: 'absolute',
+    top: '50%',
+    transform: 'translateY(-50%)',
   }).toString(),
 };
 
@@ -25,7 +28,6 @@ const styles = {
  * @returns {Function}
  */
 const mapStateToProps = state => ({
-  route: getCurrentRoute(state),
   pageSwitcherSelection: getPageSwitcherSelection(state),
 });
 
@@ -38,26 +40,44 @@ const { showAppBarNavDrawer } = getConfig();
  * if used in combination with page switcher extension
  * @returns {JSX.Element}
  */
-const AppBarBurgerIcon = ({ route, pageSwitcherSelection }) => {
+const AppBarBurgerIcon = ({ pageSwitcherSelection }) => {
+  const route = useRoute();
+
   const handleKeyDown = useCallback((event) => {
     if (event.key === 'Enter') {
       NavDrawer.open();
     }
   }, []);
 
-  if (!showAppBarNavDrawer || ((Object.keys(pageSwitcherSelection).length === 0) && route?.pathname !== '/')) {
-    return null;
-  }
+  const isVisible = useMemo(() => {
+    // Not configured to show the app bar nav drawer icon
+    if (!showAppBarNavDrawer) {
+      return false;
+    }
 
-  if (Object.keys(pageSwitcherSelection).length > 0
-    && route?.pathname !== pageSwitcherSelection?.path) {
+    const hasPageSwitcherSelection = Object.keys(pageSwitcherSelection).length > 0;
+
+    // No page switcher homepage route configured and not on the homepage
+    if (!hasPageSwitcherSelection && route?.pathname !== '/') {
+      return false;
+    }
+
+    // Page switcher homepage configured but not on the configured route
+    if (hasPageSwitcherSelection && route?.pathname !== pageSwitcherSelection?.path) {
+      return false;
+    }
+
+    return true;
+  }, [pageSwitcherSelection, route.pathname]);
+
+  if (!isVisible) {
     return null;
   }
 
   return (
     <div
       onKeyDown={handleKeyDown}
-      className={styles.container}
+      className={`${styles.container} category-drawer__app-bar-burger-icon`}
       onClick={NavDrawer.open}
       role="button"
       tabIndex={0}
@@ -69,7 +89,6 @@ const AppBarBurgerIcon = ({ route, pageSwitcherSelection }) => {
 };
 
 AppBarBurgerIcon.propTypes = {
-  route: PropTypes.shape().isRequired,
   pageSwitcherSelection: PropTypes.shape(),
 };
 

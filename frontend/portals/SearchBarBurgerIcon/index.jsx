@@ -36,7 +36,7 @@ const SearchBarBurgerIcon = () => {
   return (
     <div
       onKeyDown={handleKeyDown}
-      className={styles.container}
+      className={`${styles.container} category-search-bar-burger-icon`}
       onClick={NavDrawer.open}
       role="button"
       tabIndex={0}

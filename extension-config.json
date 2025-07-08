@@ -157,6 +157,32 @@
         "type": "checkbox"
       }
     },
+    "useCatalogService": {
+      "type": "admin",
+      "destination": "backend",
+      "default": false,
+      "params": {
+        "label": "true/false to use the catalog service",
+        "type": "checkbox"
+      }
+    },
+    "omniCredentials": {
+      "type": "admin",
+      "destination": "backend",
+      "default": {
+        "clientId": null,
+        "clientSecret": null,
+        "password": null,
+        "tenantId": null,
+        "username": null,
+        "baseDomain": null,
+        "tenantType": null
+      },
+      "params": {
+        "type": "json",
+        "label": "Credentials for the OC services"
+      }
+    },
     "credentials": {
       "type": "bigApiCredentials",
       "destination": "backend"

@@ -18,7 +18,7 @@ const _mapCatalogCategoryToProductCategory = category => ({
   },
   description: category.description,
   imageUrl: category.image,
-  externalUrl: null,
+  externalUrl: category.url,
   sort: category.sequenceId,
   productCount: category.productCount,
   childrenSort: 'manual',

@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.6.0] - 2025-08-01
+### Added
+- fetching categories from Catalog service if set up
+
 ## [1.5.0] - 2025-07-03
 ### Added
 - Supports position of burger icon in app bar (only on home page)

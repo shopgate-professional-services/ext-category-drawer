@@ -16,9 +16,9 @@ const styles = {
     flexShrink: 0,
     display: 'flex',
     alignItems: 'center',
-    position: 'absolute',
-    top: '50%',
-    transform: 'translateY(-50%)',
+    // position: 'absolute',
+    // top: '50%',
+    // transform: 'translateY(-50%)',
   }).toString(),
 };
 
@@ -32,6 +32,13 @@ const mapStateToProps = state => ({
 });
 
 const { showAppBarNavDrawer } = getConfig();
+
+// fix logo overlapping category drawer when both extensions are used in app header
+if (showAppBarNavDrawer) {
+  css.global('.engage__logo > img', {
+    margin: '0',
+  });
+}
 
 /**
  * AppBarBurgerIcon

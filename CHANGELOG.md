@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.7.0 - 2025-01-19
+- Improved render performance
+
 ## 1.6.1 - 2025-08-21
 ### Fixed
 - Fixed logo overlapping category drawer icon when category drawer extension is combined with page switcher

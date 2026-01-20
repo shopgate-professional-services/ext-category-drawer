@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { css } from 'glamor';
 import { INDEX_PATH } from '@shopgate/engage/core';
 import Categories from '../Categories';
@@ -25,4 +25,4 @@ const Content = () => (
   </div>
 );
 
-export default Content;
+export default memo(Content);

@@ -1,15 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { memo, useMemo } from 'react';
 import { css } from 'glamor';
+import { useSelector } from 'react-redux';
 import { LoadingIndicator } from '@shopgate/engage/components';
+import {
+  makeGetSubcategoriesByCategoryId,
+  getPageSwitcherSelection,
+} from '../../selectors';
 import CategoriesItemChildren from '../CategoriesItemChildren';
 import { styles as itemStyles } from '../Item';
-import connect from './connector';
 
 const styles = {
   list: css({
     borderBottom: '1px solid #c6c6c6',
-  }),
+  }).toString(),
   loadingIndicator: css({
     padding: 0,
     margin: 'auto',
@@ -20,10 +23,11 @@ const styles = {
  * The Categories component
  * @returns {JSX}
  */
-const Categories = ({
-  subcategories,
-  pageSwitcherSelection,
-}) => {
+const Categories = () => {
+  const getSubcategoriesByCategoryId = useMemo(makeGetSubcategoriesByCategoryId, []);
+  const subcategories = useSelector(getSubcategoriesByCategoryId);
+  const pageSwitcherSelection = useSelector(getPageSwitcherSelection);
+
   let pageSwitcherCategoryId = null;
   if (pageSwitcherSelection) {
     pageSwitcherCategoryId = pageSwitcherSelection.categoryId;
@@ -61,14 +65,4 @@ const Categories = ({
   );
 };
 
-Categories.propTypes = {
-  pageSwitcherSelection: PropTypes.shape(),
-  subcategories: PropTypes.arrayOf(PropTypes.shape()),
-};
-
-Categories.defaultProps = {
-  pageSwitcherSelection: null,
-  subcategories: null,
-};
-
-export default connect(Categories);
+export default memo(Categories);

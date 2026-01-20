@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import Provider from './Provider';
 import Content from './components/Content';
@@ -29,4 +29,4 @@ NavDrawerCategoriesTree.defaultProps = {
   maxLevelWithBorder: 2,
 };
 
-export default NavDrawerCategoriesTree;
+export default memo(NavDrawerCategoriesTree);

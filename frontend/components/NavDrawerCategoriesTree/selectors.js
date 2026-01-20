@@ -27,9 +27,13 @@ export const hasCategoryContent = (category) => {
 
 /**
  * Creates a getCategoriesById selector
+ * @param {string} categoryId The category id.
  * @returns {Function}
  */
-export const makeGetSubcategoriesByCategoryId = () =>
+export const makeGetSubcategoriesByCategoryId = (categoryId) => {
+  // Create an object that can be use as 2nd parameter for selectors to ensure stable references
+  const stableProps = { categoryId };
+
   /**
    * Retrieves categories from the state.
    * If no category id is passed, root-categories will be returned.
@@ -37,11 +41,10 @@ export const makeGetSubcategoriesByCategoryId = () =>
    * @param {Object} props The component props.
    * @returns {Object[]} The categories collection.
    */
-  createSelector(
-    getCategoryChildren,
+  return createSelector(
+    state => getCategoryChildren(state, stableProps),
     getCategoryTree,
-    (state, props) => props.categoryId,
-    (childCategories, categoryTree, categoryId) => {
+    (childCategories, categoryTree) => {
       // Check if we have to handle the root-category
       if (!categoryId && categoryTree) {
         return categoryTree.map(category => ({
@@ -61,6 +64,7 @@ export const makeGetSubcategoriesByCategoryId = () =>
       return childCategories;
     }
   );
+};
 
 /**
  * Get the state of the @shopgate-project/page-switcher extension

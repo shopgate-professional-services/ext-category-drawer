@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
+// eslint-disable-next-line import/no-cycle
 import CategoriesItem from '../CategoriesItem';
 
 /**
@@ -32,4 +33,4 @@ CategoriesItemChildren.defaultProps = {
   pageSwitcher: null,
 };
 
-export default CategoriesItemChildren;
+export default memo(CategoriesItemChildren);

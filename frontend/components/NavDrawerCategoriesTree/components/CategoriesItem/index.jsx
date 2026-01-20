@@ -1,17 +1,23 @@
 import React, {
-  useState, useCallback, useMemo, useEffect,
+  useState, useCallback, useMemo, useEffect, memo,
 } from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'glamor';
 import classNames from 'classnames';
+import { useSelector } from 'react-redux';
 import { themeConfig } from '@shopgate/pwa-common/helpers/config';
 import {
   HtmlSanitizer, ChevronIcon, Link, I18n,
 } from '@shopgate/engage/components';
 import { bin2hex, i18n } from '@shopgate/engage/core/helpers';
+import { getCategory } from '@shopgate/pwa-common-commerce/category/selectors';
+
+import {
+  makeGetSubcategoriesByCategoryId,
+} from '../../selectors';
+// eslint-disable-next-line import/no-cycle
 import CategoriesItemChildren from '../CategoriesItemChildren';
 import Item from '../Item';
-import connect from './connector';
 import { useSideNavigation } from '../../hooks';
 import getConfig from '../../../../helpers/getConfig';
 
@@ -82,9 +88,7 @@ const styles = {
  */
 const CategoriesItem = ({
   categoryId,
-  category,
   pageSwitcher,
-  subcategories,
   level,
   content,
 }) => {
@@ -111,6 +115,11 @@ const CategoriesItem = ({
       setIsOpen(true);
     }
   }, [pageSwitcher, activeCategoryPath]);
+
+  const getSubcategoriesByCategoryId = useMemo(makeGetSubcategoriesByCategoryId, []);
+  const subcategories = useSelector(getSubcategoriesByCategoryId);
+  const stableProps = useMemo(() => ({ categoryId }), [categoryId]);
+  const category = useSelector(state => getCategory(state, stableProps));
 
   const hasSubcategories = useMemo(() => category && category.childrenCount !== 0, [category]);
   const maxNestingReached = useMemo(() => level + 1 === maxCategoryNesting, [
@@ -186,21 +195,17 @@ const CategoriesItem = ({
 };
 
 CategoriesItem.propTypes = {
-  category: PropTypes.shape(),
   categoryId: PropTypes.string,
   content: PropTypes.arrayOf(PropTypes.string),
   level: PropTypes.number,
   pageSwitcher: PropTypes.bool,
-  subcategories: PropTypes.arrayOf(PropTypes.shape()),
 };
 
 CategoriesItem.defaultProps = {
-  category: null,
-  subcategories: null,
   categoryId: null,
   content: null,
   level: 0,
   pageSwitcher: false,
 };
 
-export default connect(CategoriesItem);
+export default memo(CategoriesItem);

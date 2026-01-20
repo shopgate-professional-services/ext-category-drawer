@@ -1,5 +1,5 @@
 import React, {
-  useState, useMemo, useEffect, createContext, useCallback,
+  useState, useMemo, useEffect, createContext, useCallback, memo,
 } from 'react';
 import PropTypes from 'prop-types';
 import { hex2bin, bin2hex } from '@shopgate/engage/core';
@@ -190,4 +190,4 @@ NavDrawerCategoriesProvider.defaultProps = {
   categoryTree: null,
 };
 
-export default connect(NavDrawerCategoriesProvider);
+export default memo(connect(NavDrawerCategoriesProvider));

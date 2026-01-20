@@ -27,10 +27,15 @@ export const hasCategoryContent = (category) => {
 
 /**
  * Creates a getCategoriesById selector
- * @param {string} categoryId The category id.
+ * @param {Object} [options={}] The options.
+ * @param {string} [options.categoryId] The category id.
+ * @param {string} [options.pageSwitcherCategoryId] The page switcher category id.
  * @returns {Function}
  */
-export const makeGetSubcategoriesByCategoryId = (categoryId) => {
+export const makeGetSubcategoriesByCategoryId = ({
+  categoryId,
+  pageSwitcherCategoryId,
+} = {}) => {
   // Create an object that can be use as 2nd parameter for selectors to ensure stable references
   const stableProps = { categoryId };
 
@@ -50,7 +55,14 @@ export const makeGetSubcategoriesByCategoryId = (categoryId) => {
         return categoryTree.map(category => ({
           ...category,
           content: hasCategoryContent(category),
-        }));
+        })).filter((category) => {
+          // If pageSwitcherCategoryId is set, only return that category
+          if (pageSwitcherCategoryId) {
+            return category.id === pageSwitcherCategoryId;
+          }
+
+          return true;
+        });
       }
 
       // Check if a category has a contentMapping

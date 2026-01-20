@@ -2,6 +2,7 @@ import React, { memo, useMemo } from 'react';
 import { css } from 'glamor';
 import { useSelector } from 'react-redux';
 import { LoadingIndicator } from '@shopgate/engage/components';
+import { isEqual } from 'lodash';
 import {
   makeGetSubcategoriesByCategoryId,
   getPageSwitcherSelection,
@@ -24,14 +25,18 @@ const styles = {
  * @returns {JSX}
  */
 const Categories = () => {
-  const getSubcategoriesByCategoryId = useMemo(makeGetSubcategoriesByCategoryId, []);
-  const subcategories = useSelector(getSubcategoriesByCategoryId);
   const pageSwitcherSelection = useSelector(getPageSwitcherSelection);
 
   let pageSwitcherCategoryId = null;
   if (pageSwitcherSelection) {
     pageSwitcherCategoryId = pageSwitcherSelection.categoryId;
   }
+
+  const getSubcategoriesByCategoryId = useMemo(
+    () => makeGetSubcategoriesByCategoryId({ pageSwitcherCategoryId }),
+    [pageSwitcherCategoryId]
+  );
+  const subcategories = useSelector(getSubcategoriesByCategoryId, isEqual);
 
   if (!subcategories) {
     return (
@@ -45,23 +50,14 @@ const Categories = () => {
     return null;
   }
 
-  // ###BOA###
-  // Logic for page switcher (if used with @shopgate-project/page-switcher)
-  if (pageSwitcherCategoryId) {
-    const filteredSubcategories = subcategories.filter(cat => cat.id === pageSwitcherCategoryId);
-    return (
-      <li className={styles.list}>
-        <CategoriesItemChildren level={0} subcategories={filteredSubcategories} pageSwitcher />
-      </li>
-    );
-  }
-  // ###EOA###
-
   return (
     <li className={styles.list}>
-      <CategoriesItemChildren level={0} subcategories={subcategories} />
+      <CategoriesItemChildren
+        level={0}
+        subcategories={subcategories}
+        pageSwitcher={!!pageSwitcherCategoryId}
+      />
     </li>
-
   );
 };
 

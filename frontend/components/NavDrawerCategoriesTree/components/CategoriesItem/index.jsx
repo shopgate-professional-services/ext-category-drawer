@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { css } from 'glamor';
 import classNames from 'classnames';
 import { useSelector } from 'react-redux';
+import { isEqual } from 'lodash';
 import { themeConfig } from '@shopgate/pwa-common/helpers/config';
 import {
   HtmlSanitizer, ChevronIcon, Link, I18n,
@@ -116,8 +117,12 @@ const CategoriesItem = ({
     }
   }, [pageSwitcher, activeCategoryPath]);
 
-  const getSubcategoriesByCategoryId = useMemo(makeGetSubcategoriesByCategoryId, []);
-  const subcategories = useSelector(getSubcategoriesByCategoryId);
+  const getSubcategoriesByCategoryId = useMemo(
+    () => makeGetSubcategoriesByCategoryId({ categoryId }),
+    [categoryId]
+  );
+  const subcategories = useSelector(getSubcategoriesByCategoryId, isEqual);
+
   const stableProps = useMemo(() => ({ categoryId }), [categoryId]);
   const category = useSelector(state => getCategory(state, stableProps));
 

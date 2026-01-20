@@ -15,6 +15,7 @@
     "@shopgate/pwa-ui-shared": "^7.25.0",
     "eslint": "^6.8.0",
     "glamor": "^2.20.40",
+    "lodash": "^4.17.21",
     "prop-types": "^15.6.0",
     "react": "^16.2.0"
   },

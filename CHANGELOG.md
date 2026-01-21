@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.6.2 - 2026-01-21
+### Fixed
+- Fixed color and alignment of browse icon
+
 ## 1.6.1 - 2025-08-21
 ### Fixed
 - Fixed logo overlapping category drawer icon when category drawer extension is combined with page switcher

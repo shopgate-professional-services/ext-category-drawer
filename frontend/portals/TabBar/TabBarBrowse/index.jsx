@@ -1,33 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import BrowseIcon from '@shopgate/pwa-ui-shared/icons/BrowseIcon';
 import { NavDrawer } from '@shopgate/pwa-ui-material';
-import { useWidgetSettings } from '@shopgate/engage/core';
-import { I18n } from '@shopgate/engage/components';
-import Button from '@shopgate/pwa-common/components/Button';
+import { useWidgetSettings, i18n } from '@shopgate/engage/core';
 import { themeName } from '@shopgate/pwa-common/helpers/config';
 import { makeStyles } from '@shopgate/engage/styles';
 import getConfig from '../../../helpers/getConfig';
 
 const useStyles = makeStyles()(({
-  container: {
-    display: 'flex',
-    position: 'relative',
-    flexBasis: 0,
-    flexDirection: 'column',
-    flexGrow: 1,
-    alignItems: 'center',
-    fontWeight: 500,
-    fontSize: '0.64rem',
-    height: '100%',
-    padding: 0,
-    color: 'var(--tab-bar-item-default-color)',
-    '> svg': {
-      flexGrow: 1,
-      width: 33,
-      height: 22,
-      marginRight: 'auto',
-      marginLeft: 'auto',
-    },
+  browseIcon: {
+    height: 22,
+    width: 31,
   },
 }));
 
@@ -38,7 +21,7 @@ const isIOS = themeName.includes('ios');
  * Disables browse button on tab bar
  * @returns {JSX.Element}
  */
-const TabBarBrowse = () => {
+const TabBarBrowse = ({ TabBarAction }) => {
   const { classes } = useStyles();
   const { showLabels = true } = useWidgetSettings('@shopgate/engage/components/TabBar');
 
@@ -47,18 +30,16 @@ const TabBarBrowse = () => {
   }
 
   return (
-    <Button
-      className={`theme__tab-bar__tab-bar-action ${classes.container}`}
+    <TabBarAction
+      icon={<BrowseIcon className={classes.browseIcon} />}
       onClick={NavDrawer.open}
-      data-test-id="Button"
-      role="tab"
-    >
-      <BrowseIcon />
-      <div className={classes.span}>
-        {showLabels && <I18n.Text string="Stöbern" />}
-      </div>
-    </Button>
+      label={showLabels ? i18n.text('tab_bar.browse') : null}
+    />
   );
+};
+
+TabBarBrowse.propTypes = {
+  TabBarAction: PropTypes.func.isRequired,
 };
 
 export default TabBarBrowse;

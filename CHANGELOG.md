@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.7.0 - 2026-03-03
+### Added
+- Extension will use the `receiveCategories` action when available to add categories into Redux
+
 ## 1.6.2 - 2026-01-21
 ### Fixed
 - Fixed color and alignment of browse icon
